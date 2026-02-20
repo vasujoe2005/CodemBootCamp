@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Strength Validator</title>
+    <script>
+        function checkPassword(){
+            var password=document.getElementById("password").value;
+            var result=document.getElementById("result");
+            var lengthCheck=password.length >= 8;
+            var upperCheck=/[A-Z]/.test(password);
+            var lowerCheck=/[a-z]/.test(password);
+            var numberCheck=/[0-9]/.test(password);
+            var specialCheck=/[!@#$%^&*]/.test(password);
+            var noSpaceCheck=!/\s/.test(password);
+            var score=0;
+            if(lengthCheck) score++;
+            if(upperCheck) score++;
+            if(lowerCheck) score++;
+            if(numberCheck) score++;
+            if(specialCheck) score++;
+            if(noSpaceCheck) score++;
+            var strength;
+            if(score <= 2){
+                strength="Weak";
+                result.style.color="red";
+            }
+            else if(score <= 5){
+                strength="Medium";
+                result.style.color="orange";
+            }
+            else{
+                strength="Strong";
+                result.style.color="green";
+            }
+            result.innerHTML="Password Strength: "+strength;
+        }
+    </script>
+</head>
+<body>
+    <h2>Password Strength Validator</h2>
+    Enter Password:
+    <input type="text" id="password" onkeyup="checkPassword()">
+    <br><br>
+    <h3 id="result"></h3>
+</body>
+</html>

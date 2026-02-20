@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Message Priority Formatter</title>
+    <script>
+        function processMessage(){
+            var message=document.getElementById("message").value;
+            var isUrgent=document.getElementById("urgent").checked;
+            if(message.trim()===""){
+                console.log("Message cannot be empty");
+                return;
+            }
+            var lowerMessage=message.toLowerCase();
+            var hasWarningWord=lowerMessage.includes("error")||lowerMessage.includes("fail");
+            var isHighPriority=isUrgent||hasWarningWord;
+            var finalMessage; 
+            if(isHighPriority){
+                finalMessage="IMPORTANT: "+message.toUpperCase();
+            }else{
+                finalMessage="INFO: "+message.toLowerCase();
+            } 
+            console.log("Original Message:", message);
+            console.log("Urgent:", isUrgent ? "Yes" : "No");
+            console.log("Contains Warning Word:", hasWarningWord);
+            console.log("High Priority:", isHighPriority ? "Yes" : "No");
+            console.log("Final Message:", finalMessage);
+        }
+    </script>
+</head>
+<body>
+    <h2>Message Priority Formatter</h2>
+    Enter Message:<br><textarea id="message" rows="4" cols="40"></textarea>
+    <br><br>
+    Mark as Urgent:<input type="checkbox" id="urgent">
+    <br><br>
+    <button onclick="processMessage()">Process Message</button>
+</body>
+</html>

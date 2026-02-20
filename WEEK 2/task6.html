@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Billing System</title>
+    <script>
+        function calculateBill(isMember){
+            var billAmount=Number(document.getElementById("bill").value);
+            if(isNaN(billAmount)||billAmount<=0){
+                console.log("Error: Invalid bill amount");
+                return;
+            }
+            var discountPercent=0;
+            if(isMember==true){
+                discountPercent=10;
+            }
+            else if(billAmount>=1000){
+                discountPercent=5;
+            }
+            else{
+                discountPercent=0;
+            }
+            var discountAmount=(billAmount * discountPercent) / 100;
+            var finalAmount=billAmount-discountAmount;
+            var giftStatus;
+            if(finalAmount>=1500){
+                giftStatus="Free Gift Eligible";
+            }else{
+                giftStatus="No Free Gift";
+            }
+            console.log("Bill Amount: ₹"+billAmount);
+            console.log("Customer Type:", isMember ? "Member" : "Regular");
+            console.log("Discount Applied: "+discountPercent+"%");
+            console.log("Discount Amount: ₹"+discountAmount);
+            console.log("Final Amount: ₹"+finalAmount);
+            console.log("Gift Status:", giftStatus);
+        }
+    </script>
+</head>
+<body>
+    <h2>Simple Billing System</h2>
+    Enter Bill Amount: <input type="number" id="bill"><br><br>
+    <button onclick="calculateBill(false)">Regular</button>
+    <button onclick="calculateBill(true)">Member</button>
+</body>
+</html>

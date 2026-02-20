@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointment Confirmation System</title>
+    <script>
+        function checkAppointment(){
+            var dateAvailable=document.getElementById("dateAvailable").value;
+            var userConfirmed=document.getElementById("userConfirmed").value;
+            if(dateAvailable==="false"){
+                alert("Appointment Rejected");
+            }
+            else if(userConfirmed==="false"){
+                alert("Appointment Rejected");
+            }
+            else{
+                alert("Appointment Confirmed");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Appointment Confirmation System</h2>
+    Date Available:
+    <select id="dateAvailable">
+        <option value="true">Available</option>
+        <option value="false">Not Available</option>
+    </select>
+    <br><br>
+    User Confirmation:
+    <select id="userConfirmed">
+        <option value="true">Confirmed</option>
+        <option value="false">Not Confirmed</option>
+    </select>
+    <br><br>
+    <button onclick="checkAppointment()">Check Appointment</button>
+</body>
+</html>

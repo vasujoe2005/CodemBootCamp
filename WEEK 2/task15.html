@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Status Checker</title>
+    <script>
+        function checkPaymentStatus(){
+            var amount=Number(document.getElementById("amount").value);
+            var isPaid=document.getElementById("isPaid").value;
+            var paymentMethod=document.getElementById("method").value;
+            var result=document.getElementById("result");
+            var status;
+            if(isNaN(amount)||amount <= 0){
+                status="Invalid payment amount";
+            }
+            else if(isPaid==="false"){
+                status="Payment Pending";
+            }
+            else if(paymentMethod==="UPI"||paymentMethod==="Card"){
+                status="Payment Successful";
+            }
+            else{
+                status="Invalid payment method";
+            }
+            result.innerHTML="<strong>Payment Status:</strong> "+status+"<br><strong>Amount:</strong> ₹"+amount+"<br><strong>Payment Method:</strong> "+paymentMethod;
+        }
+    </script>
+</head>
+<body>
+    <h2>Payment Status Checker</h2>
+    Enter Amount: <input type="number" id="amount"><br><br>
+    Payment Done:
+    <select id="isPaid">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+    <br><br>
+    Payment Method:
+    <select id="method">
+        <option value="UPI">UPI</option>
+        <option value="Card">Card</option>
+        <option value="Cash">Cash</option>
+    </select>
+    <br><br>
+    <button onclick="checkPaymentStatus()">Check Payment</button>
+    <br><br>
+    <div id="result"></div>
+</body>
+</html>

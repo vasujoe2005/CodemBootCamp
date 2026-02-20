@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coin Toss Game</title>
+    <script>
+        function tossCoin(playerChoice){
+            var randomNumber=Math.random();
+            var computerChoice;
+            if(randomNumber < 0.5){
+                computerChoice="Heads";
+            }else{
+                computerChoice="Tails";
+            }
+            var result;
+            if(playerChoice==computerChoice){
+                result="Player wins!";
+            }else{
+                result="Player loses!";
+            }
+            alert(
+                "Player choice: "+playerChoice+
+                "\nComputer choice: "+computerChoice+
+                "\nResult: "+result
+            );
+        }
+    </script>
+</head>
+<body>
+    <h2>Coin Toss Game</h2>
+    <button onclick="tossCoin('Heads')">Heads</button>
+    <button onclick="tossCoin('Tails')">Tails</button>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notification Filter</title>
+    <script>
+        function filterNotification(){
+            var message=document.getElementById("message").value;
+            var isUrgent=document.getElementById("urgent").checked;
+            var result=document.getElementById("result");
+            var lowerMessage=message.toLowerCase();
+            var hasImportantWord=lowerMessage.includes("error")||lowerMessage.includes("alert")||lowerMessage.includes("urgent");
+            var isImportant=isUrgent||hasImportantWord;
+            var formattedMessage;
+            if(isImportant){
+                formattedMessage="IMPORTANT: "+message.toUpperCase();
+            }else{
+                formattedMessage="NORMAL: "+message;
+            }
+            result.innerHTML ="<strong>Notification Type:</strong> "+(isImportant ? "Important" : "Normal")+"<br><br>"+formattedMessage;
+        }
+    </script>
+</head>
+<body>
+    <h2>Notification Filter</h2>
+    Enter Notification Message:<br>
+    <textarea id="message" rows="4" cols="40"></textarea>
+    <br><br>
+    Mark as Urgent:
+    <input type="checkbox" id="urgent">
+    <br><br>
+    <button onclick="filterNotification()">Check Notification</button>
+    <br><br>
+    <div id="result"></div>
+</body>
+</html>

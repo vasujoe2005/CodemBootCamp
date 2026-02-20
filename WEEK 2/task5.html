@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order & Discount Processor</title>
+    <script>
+        function validateCoupon(couponCode){
+            return couponCode=="SAVE10";
+        }
+        function processOrder(){
+            var orderAmount=Number(document.getElementById("amount").value);
+            var isMember=document.getElementById("member").checked;
+            var couponCode=document.getElementById("coupon").value;
+            if(isNaN(orderAmount)||orderAmount<=0){
+                console.log("Invalid order amount");
+                return;
+            }
+            var orderType;
+            if(orderAmount < 1500){
+                orderType="Small Order";
+            }
+            else if(orderAmount < 3000){
+                orderType="Medium Order";
+            }
+            else{
+                orderType="Large Order";
+            }
+            var discount=0;
+            if(orderAmount>=3000||isMember==true){
+                discount=20;
+            }
+            else if(orderAmount>=1500 && validateCoupon(couponCode)){
+                discount=10;
+            }
+            else if(couponCode==""){
+                discount=0;
+            }
+            else{
+                discount=5;
+            }
+            var finalAmount=orderAmount-(orderAmount * discount / 100);
+            var deliveryStatus;
+            if(finalAmount>=2000){
+                deliveryStatus="Free Delivery";
+            }else{
+                finalAmount=finalAmount+100;
+                deliveryStatus="₹100 Delivery Charge Added";
+            }
+            console.log("Order Type:", orderType);
+            console.log("Order Amount: ₹"+orderAmount);
+            console.log("Member Status:", isMember ? "Member" : "Not a Member");
+            console.log("Delivery Status:", deliveryStatus);
+            console.log("Discount Applied: "+discount+"%");
+            console.log("Final Amount: ₹"+finalAmount);            
+            console.log("Coupon Valid:", validateCoupon(couponCode));
+        }
+    </script>
+</head>
+<body>
+    <h2>Order & Discount Processor</h2>
+    Enter Order Amount: <input type="number" id="amount"><br><br>
+    Member: <input type="checkbox" id="member"> <br><br>
+    Coupon Code: <input type="text" id="coupon"><br><br>
+    <button onclick="processOrder()">Place Order</button>
+</body>
+</html>

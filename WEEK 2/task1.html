@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Access System</title>
+    <script>
+        var selectedRole="";
+        function showLogin(role){
+            selectedRole=role;
+            document.getElementById("loginForm").style.display="block";
+            document.getElementById("result").innerHTML="";
+        }
+        function validateLogin(){
+            var username=document.getElementById("username").value;
+            var password=document.getElementById("password").value;
+            var message=document.getElementById("result");
+
+            if(selectedRole=="admin" && username=="admin" && password=="123"){
+                message.innerHTML="Full access granted";
+            }
+            else if(selectedRole=="user" && username=="user" && password=="123"){
+                message.innerHTML="Limited access granted";
+            }
+            else if(selectedRole=="guest" && username=="guest" && password=="123"){
+                message.innerHTML="Read-only access";
+            }
+            else{
+                message.innerHTML="Invalid credentials";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Login Access System</h2>
+    <!-- Role Buttons -->
+    <button onclick="showLogin('admin')">Admin</button>
+    <button onclick="showLogin('user')">User</button>
+    <button onclick="showLogin('guest')">Guest</button>
+    <br><br>
+    <!-- Hidden Login Form -->
+    <div id="loginForm" style="display:none;">
+        Username: <input type="text" id="username"><br><br>
+        Password: <input type="password" id="password"><br><br>
+        <button onclick="validateLogin()">Login</button>
+    </div>
+    <h3 id="result"></h3>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Eligibility Checker</title>
+    <script>
+        function checkTravelEligibility(){
+            var age=Number(document.getElementById("age").value);
+            var ticketType=document.getElementById("ticketType").value.toLowerCase();
+            var hasID=document.getElementById("hasID").checked;
+            if(age<=0||isNaN(age)){
+                console.log("Invalid age");
+                return;
+            } 
+            if(ticketType !== "normal" && ticketType !== "priority"){
+                console.log("Invalid ticket type");
+                return;
+            } 
+            var eligibility; 
+            if(age>=18 && hasID){
+                eligibility="Eligible";
+            }
+            else if(age < 18 && ticketType==="priority"){
+                eligibility="Eligible with Guardian";
+            }
+            else{
+                eligibility="Not Eligible";
+            } 
+            var fare=200;  
+
+            if(ticketType==="priority"){
+                fare += 50;
+            } 
+            console.log("Age:", age);
+            console.log("Ticket Type:", ticketType);
+            console.log("Has ID:", hasID ? "Yes" : "No");
+            console.log("Eligibility:", eligibility);
+            console.log("Total Fare: ₹"+fare);
+        }
+    </script>
+</head>
+<body>
+    <h2>Travel Eligibility Checker</h2>
+    Enter Age: <input type="number" id="age"><br><br>
+    Ticket Type:
+    <select id="ticketType">
+        <option value="normal">Normal</option>
+        <option value="priority">Priority</option>
+    </select>
+    <br><br>
+    Has Valid ID:<input type="checkbox" id="hasID"> <br><br>
+    <button onclick="checkTravelEligibility()">Check Eligibility</button>
+</body>
+</html>
