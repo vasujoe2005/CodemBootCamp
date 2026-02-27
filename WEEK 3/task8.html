@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic List from Objects</title>
+</head>
+<body>
+    <div id="listContainer"></div>
+    <script>
+        let products = [
+            { name: "Strawberry", price: 200 },
+            { name: "Blueberry", price: 180 },
+            { name: "Raspberry", price: 215 }
+        ];
+        let container = document.getElementById("listContainer");
+        let ul = document.createElement("ul");
+        products.forEach(function(product) {
+            let li = document.createElement("li");
+            li.textContent = `Product: ${product.name}, Price: ₹${product.price}`;
+            ul.appendChild(li);
+        });
+        container.appendChild(ul);
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Traversal Example</title>
+    <style>
+        .container {
+            padding: 20px;
+            border: 2px solid black;
+        }
+        .box {
+            padding: 10px;
+            margin: 5px;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">Box 1</div>
+        <div class="box" id="target">Box 2 (Target)</div>
+        <div class="box">Box 3</div>
+    </div>
+    <button onclick="traverseDOM()">Modify Elements</button>
+    <script>
+        function traverseDOM() {
+            let target = document.getElementById("target");
+            let parent = target.parentElement;
+            parent.style.backgroundColor = "lightblue";
+            let firstChild = parent.firstElementChild;
+            firstChild.textContent = "Box 1 Updated";
+            firstChild.style.color = "red";
+            let sibling = target.nextElementSibling;
+            sibling.style.backgroundColor = "yellow";
+            sibling.textContent = "Box 3 Updated";
+            target.style.fontWeight = "bold";
+            target.textContent = "Target Modified";
+        }
+    </script>
+</body>
+</html>

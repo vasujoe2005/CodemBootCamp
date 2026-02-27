@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keyboard Events Interaction</title>
+</head>
+<body>
+    <h2>Press Any Key</h2>
+    <div id="display">Waiting for key press...</div>
+    <script>
+        const display = document.getElementById("display");
+        document.addEventListener("keydown", function (event) {
+            const keyPressed = event.key;
+            display.textContent = "Key Down: " + keyPressed;
+            if (keyPressed === "Enter") {
+                display.textContent = "You pressed ENTER";
+            }
+            else if (keyPressed === "Escape") {
+                display.textContent = "You pressed ESCAPE";
+            }
+            else if (keyPressed === "a" || keyPressed === "A") {
+                display.textContent = "You pressed A";
+            }
+        });
+        document.addEventListener("keyup", function (event) {
+            const keyReleased = event.key;
+            display.textContent = "Key Up: " + keyReleased;
+        });
+    </script>
+</body>
+</html>
