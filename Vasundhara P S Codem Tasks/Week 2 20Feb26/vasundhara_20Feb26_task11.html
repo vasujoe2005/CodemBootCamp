@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Action Advisor</title>
+    <script>
+        function checkWeather(){
+            var weather=document.getElementById("weather").value.toLowerCase();
+            var temperature=Number(document.getElementById("temp").value);
+            var suggestion="";
+            if(weather==="rainy"){
+                suggestion="Carry an umbrella.";
+            }
+            else if(weather==="sunny"){
+                suggestion="Wear sunglasses.";
+            }
+            else if(weather==="cold"){
+                suggestion="Wear warm clothes.";
+            }
+            else{
+                suggestion="Have a good day.";
+            }
+            if(temperature > 35){
+                suggestion += "Stay hydrated.";
+            }
+            else if(temperature < 15){
+                suggestion += "Keep yourself warm.";
+            }
+            else{
+                suggestion += "Weather looks comfortable.";
+            }
+            alert("Weather: "+weather+"\nTemperature: "+temperature+"°C"+"\nSuggestion: "+suggestion);
+        }
+    </script>
+</head>
+<body>
+    <h2>Weather Action Advisor</h2>
+    Weather Condition:
+    <select id="weather">
+        <option value="sunny">Sunny</option>
+        <option value="rainy">Rainy</option>
+        <option value="cold">Cold</option>
+        <option value="cloudy">Cloudy</option>
+    </select>
+    <br><br>
+    Temperature (°C):
+    <input type="number" id="temp">
+    <br><br>
+    <button onclick="checkWeather()">Get Advice</button>
+</body>
+</html>

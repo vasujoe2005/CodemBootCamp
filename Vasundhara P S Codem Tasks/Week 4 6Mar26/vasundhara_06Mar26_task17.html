@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Expense Tracker</title>
+    </head>
+    <body>
+        <h3>Expense Tracker</h3>
+        <h4>Expense List</h4>
+        <div id="expenseList"></div>
+        <h4>Category Totals</h4>
+        <div id="totals"></div>
+        <script>
+        let expenses = [
+            { category: "Food", amount: 200 },
+            { category: "Travel", amount: 500 },
+            { category: "Food", amount: 300 }
+        ];
+        let expenseList = document.getElementById("expenseList");
+        let totals = document.getElementById("totals");
+        for(let i = 0; i < expenses.length; i++) {
+            let div = document.createElement("div");
+            div.textContent = expenses[i].category + " : ₹" + expenses[i].amount;
+            expenseList.appendChild(div);
+        }
+        let foodTotal = 0;
+        let travelTotal = 0;
+        for(let i = 0; i < expenses.length; i++) {
+            if(expenses[i].category === "Food") {
+                foodTotal = foodTotal + expenses[i].amount;
+            }
+            if(expenses[i].category === "Travel") {
+                travelTotal = travelTotal + expenses[i].amount;
+            }
+        }
+        let grandTotal = foodTotal + travelTotal;
+        let foodDiv = document.createElement("div");
+        foodDiv.textContent = "Food: ₹" + foodTotal;
+        totals.appendChild(foodDiv);
+        let travelDiv = document.createElement("div");
+        travelDiv.textContent = "Travel: ₹" + travelTotal;
+        totals.appendChild(travelDiv);
+        let totalDiv = document.createElement("div");
+        totalDiv.textContent = "Total: ₹" + grandTotal;
+        totals.appendChild(totalDiv);
+        </script>
+    </body>
+</html>

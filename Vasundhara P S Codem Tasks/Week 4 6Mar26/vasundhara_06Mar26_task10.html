@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Character Counter</title>
+    </head>
+    <body>
+        <h3>Live Character Counter</h3>
+        <div id="app"></div>
+        <p id="count"></p>
+        <p id="longest"></p>
+        <script>
+        let inputs = [];
+        let textarea = document.createElement("textarea");
+        textarea.rows = 4;
+        textarea.cols = 30;
+        let button = document.createElement("button");
+        button.textContent = "Submit";
+        let app = document.getElementById("app");
+        app.appendChild(textarea);
+        app.appendChild(document.createElement("br"));
+        app.appendChild(button);
+        let count = document.getElementById("count");
+        let longest = document.getElementById("longest");
+        textarea.addEventListener("input", function(){
+            let text = textarea.value;
+            count.textContent = "Characters: " + text.length;
+        });
+        button.onclick = function(){
+            let text = textarea.value;
+            if(text !== ""){
+                inputs.push(text);
+                let longestText = "";
+                for(let i = 0; i < inputs.length; i++){
+                    if(inputs[i].length > longestText.length){
+                        longestText = inputs[i];
+                    }
+                }
+                longest.textContent = "Longest Input: " + longestText;
+                console.log("Inputs:", inputs);
+                textarea.value = "";
+                count.textContent = "Characters: 0";
+            }
+        };
+        </script>
+    </body>
+</html>

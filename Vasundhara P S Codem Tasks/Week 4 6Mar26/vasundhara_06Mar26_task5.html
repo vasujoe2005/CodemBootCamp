@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Manual Pagination</title>
+    </head>
+    <body>
+        <h2>Manual Pagination Example</h2>
+        <ul id="itemList"></ul>
+        <br>
+        <button id="prevBtn" onclick="previousPage()">Previous</button>
+        <button id="nextBtn" onclick="nextPage()">Next</button>
+        <script>
+        let allItems = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+        let currentPage = 1;
+        let itemsPerPage = 5;
+        function renderItems()
+        {
+            let list = document.getElementById("itemList");
+            list.innerHTML = "";
+            let start = (currentPage - 1) * itemsPerPage;
+            let end = start + itemsPerPage;
+            for (let i = start; i < end && i < allItems.length; i++)
+            {
+                let li = document.createElement("li");
+                li.innerText = allItems[i];
+                list.appendChild(li);
+            }
+            updateButtons();
+        }
+        function nextPage()
+        {
+            currentPage++;
+            renderItems();
+        }
+        function previousPage()
+        {
+            currentPage--;
+            renderItems();
+        }
+        function updateButtons()
+        {
+            let prev = document.getElementById("prevBtn");
+            let next = document.getElementById("nextBtn");
+            let totalPages = Math.ceil(allItems.length / itemsPerPage);
+            prev.disabled = currentPage === 1;
+            next.disabled = currentPage === totalPages;
+        }
+        renderItems();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Comment System</title>
+    </head>
+    <body>
+        <h3>Comment System</h3>
+        <input type="text" id="commentInput" placeholder="Enter your comment">
+        <button onclick="addComment()">Submit</button>
+        <h4>Comments</h4>
+        <div id="commentList"></div>
+        <script>
+        let comments = [];
+        let commentList = document.getElementById("commentList");
+        function showComments() {
+            commentList.innerHTML = "";
+            if(comments.length === 0) {
+                commentList.textContent = "No Comments In the Array";
+                return;
+            }
+            let start = comments.length - 1;
+            let end = comments.length - 5;
+            if(end < 0) {
+                end = 0;
+            }
+            for(let i = start; i >= end; i--) {
+                let div = document.createElement("div");
+                div.textContent = comments[i];
+                div.style.margin = "5px";
+                commentList.appendChild(div);
+            }
+        }
+        function addComment() {
+            let input = document.getElementById("commentInput");
+            let text = input.value;
+            if(text !== "") {
+                comments.push(text);
+                input.value = "";
+                showComments();
+            }
+        }
+        showComments();
+        </script>
+    </body>
+</html>

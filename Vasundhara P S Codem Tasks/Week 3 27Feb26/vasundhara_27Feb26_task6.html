@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Before and After DOM Update</title>
+</head>
+<body>
+    <h1 id="mainTitle">Original Title</h1>
+    <p class="info">Paragraph One</p>
+    <p class="info">Paragraph Two</p>
+    <div class="box">This is a box</div>
+    <button onclick="updateContent()">Update Content</button>
+    <script>
+        function updateContent() {
+            let title = document.getElementById("mainTitle");
+            let paragraphs = document.getElementsByClassName("info");
+            let box = document.querySelector(".box");
+            title.textContent = "Updated Title using getElementById";
+            paragraphs[0].textContent = "First paragraph updated";
+            paragraphs[1].textContent = "Second paragraph updated";
+            box.textContent = "Box updated using querySelector";
+            title.style.color = "blue";
+            title.style.fontSize = "30px";
+            paragraphs[0].style.color = "green";
+            paragraphs[0].style.backgroundColor = "lightyellow";
+            paragraphs[1].style.color = "red";
+            paragraphs[1].style.fontWeight = "bold";
+            box.style.border = "2px solid black";
+            box.style.padding = "15px";
+            box.style.backgroundColor = "lightgray";
+        }
+    </script>
+</body>
+</html>

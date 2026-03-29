@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Multi Filter Product List</title>
+    </head>
+    <body>
+        <h2>Product List</h2>
+        <label>Category:</label>
+        <select id="category">
+            <option value="All">All</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Clothing">Clothing</option>
+        </select>
+        <label>Min Price:</label>
+        <input type="number" id="minPrice" placeholder="Min Price">
+        <label>Max Price:</label>
+        <input type="number" id="maxPrice" placeholder="Max Price">
+        <button onclick="filterProducts()">Apply Filter</button>
+        <br><br>
+        <table border="1" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody id="productTable">
+            </tbody>
+        </table>
+        <p id="message"></p>
+        <script>
+        let products = [
+            { name: "Laptop", price: 50000, category: "Electronics" },
+            { name: "Phone", price: 20000, category: "Electronics" },
+            { name: "Headphones", price: 3000, category: "Electronics" },
+            { name: "Shirt", price: 1200, category: "Clothing" },
+            { name: "Jeans", price: 2500, category: "Clothing" }
+        ];
+        function displayProducts(list)
+        {
+            let table = document.getElementById("productTable");
+            table.innerHTML = "";
+            if (list.length === 0)
+            {
+                document.getElementById("message").innerText = "No products found";
+                return;
+            }
+            document.getElementById("message").innerText = "";
+            for (let i = 0; i < list.length; i++)
+            {
+                let row = document.createElement("tr");
+                row.innerHTML =
+                    "<td>" + list[i].name + "</td>" +
+                    "<td>" + list[i].price + "</td>" +
+                    "<td>" + list[i].category + "</td>";
+
+                table.appendChild(row);
+            }
+        }
+        function filterProducts()
+        {
+            let selectedCategory = document.getElementById("category").value;
+            let min = document.getElementById("minPrice").value;
+            let max = document.getElementById("maxPrice").value;
+            let filtered = [];
+            for (let i = 0; i < products.length; i++)
+            {
+                let product = products[i];
+                let categoryMatch =
+                    selectedCategory === "All" ||
+                    product.category === selectedCategory;
+                let minMatch =
+                    min === "" ||
+                    product.price >= min;
+                let maxMatch =
+                    max === "" ||
+                    product.price <= max;
+                if (categoryMatch && minMatch && maxMatch)
+                {
+                    filtered.push(product);
+                }
+            }
+            displayProducts(filtered);
+        }
+        displayProducts(products);
+        </script>
+    </body>
+</html>

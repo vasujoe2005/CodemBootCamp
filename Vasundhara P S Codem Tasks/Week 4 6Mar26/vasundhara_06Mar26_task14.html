@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Price Calculator</title>
+    </head>
+    <body>
+        <h3>Price Calculator</h3>
+        <div id="priceList"></div>
+        <script>
+        let prices = [50, 100, 150];
+        let priceList = document.getElementById("priceList");
+        let total = 0;
+        for(let i = 0; i < prices.length; i++)
+        {
+            let p = document.createElement("div");
+            p.textContent = "Price " + (i+1) + " : " + prices[i];
+            priceList.appendChild(p);
+            total = total + prices[i];
+        }
+        let totalDiv = document.createElement("div");
+        totalDiv.textContent = "Total = " + total;
+        priceList.appendChild(totalDiv);
+        let tax = total * 0.10;
+        let taxDiv = document.createElement("div");
+        taxDiv.textContent = "Tax (10%) = " + tax;
+        priceList.appendChild(taxDiv);
+        let afterTax = total + tax;
+        let discount = total * 0.05;
+        let discountDiv = document.createElement("div");
+        discountDiv.textContent = "Discount (5%) = " + discount;
+        priceList.appendChild(discountDiv);
+        let finalPrice = afterTax - discount;
+        let finalDiv = document.createElement("div");
+        finalDiv.textContent = "Final Price = " + finalPrice;
+        priceList.appendChild(finalDiv);
+        </script>
+    </body>
+</html>

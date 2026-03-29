@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Message Intent Detection</title>
+    <script>
+        function detectIntent(){
+            var message=document.getElementById("message").value;
+            if(message.trim()===""){
+                console.log("Invalid message");
+                return;
+            }
+            var lowerMessage=message.toLowerCase();
+            var isQuestion=lowerMessage.includes("?");
+            var isComplaint=
+                lowerMessage.includes("problem")||
+                lowerMessage.includes("not working");
+
+            var intent;
+            if(isQuestion && isComplaint){
+                intent="Urgent Request";
+            }
+            else if(isComplaint){
+                intent="Complaint";
+            }
+            else if(isQuestion){
+                intent="Question";
+            }
+            else{
+                intent="Other";
+            }
+            console.log("Original Message:", message);
+            console.log("Intent:", intent);
+        }
+    </script>
+</head>
+<body>
+    <h2>Message Intent Detection</h2>
+    Enter Message:<br><textarea id="message" rows="4" cols="40"></textarea>
+    <br><br>
+    <button onclick="detectIntent()">Detect Intent</button>
+</body>
+</html>

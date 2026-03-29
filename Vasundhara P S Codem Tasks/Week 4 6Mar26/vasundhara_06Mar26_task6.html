@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Search and Highlight</title>
+        <style>
+            .highlight
+            {
+                background-color: yellow;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Search Languages</h2>
+        <input type="text" id="searchBox" placeholder="Search..." onkeyup="searchText()">
+        <br><br>
+        <ul id="resultList"></ul>
+        <p id="message"></p>
+        <script>
+        let texts = ["JavaScript", "Java", "Python", "React"];
+        function searchText()
+        {
+            let searchValue = document.getElementById("searchBox").value.toLowerCase();
+            let list = document.getElementById("resultList");
+            list.innerHTML = "";
+            let found = false;
+            for (let i = 0; i < texts.length; i++)
+            {
+                let item = texts[i];
+                let lowerItem = item.toLowerCase();
+                if (lowerItem.includes(searchValue))
+                {
+                    found = true;
+                    let li = document.createElement("li");
+                    let highlighted = item.replace(
+                        new RegExp(searchValue, "i"),
+                        "<span class='highlight'>" + searchValue + "</span>"
+                    );
+                    li.innerHTML = highlighted;
+                    list.appendChild(li);
+                }
+            }
+            if (!found)
+            {
+                document.getElementById("message").innerText = "No results found.";
+            }
+            else
+            {
+                document.getElementById("message").innerText = "";
+            }
+        }
+        searchText();
+        </script>
+    </body>
+</html>

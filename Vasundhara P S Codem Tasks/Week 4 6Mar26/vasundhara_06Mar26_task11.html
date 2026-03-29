@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sorting Visualizer</title>
+    </head>
+    <body>
+        <h3>Sorting Visualizer</h3>
+        <button onclick="startSort()">Sort Array</button>
+        <div id="steps"></div>
+        <script>
+        let numbers = [5, 2, 4];
+        let steps = document.getElementById("steps");
+        function display(arr)
+        {
+            let line = document.createElement("div");
+            let text = "";
+            for(let i = 0; i < arr.length; i++)
+            {
+                text = text + arr[i] + " ";
+            }
+            line.textContent = text;
+            steps.appendChild(line);
+        }
+        display(numbers);
+        function startSort()
+        {
+            for(let i = 0; i < numbers.length; i++)
+            {
+                for(let j = 0; j < numbers.length - 1; j++)
+                {
+                    if(numbers[j] > numbers[j+1])
+                    {
+                        let temp = numbers[j];
+                        numbers[j] = numbers[j+1];
+                        numbers[j+1] = temp;
+                        display(numbers);
+                    }
+                }
+            }
+        }
+        </script>
+    </body>
+</html>

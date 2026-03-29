@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Ticket Checker</title>
+</head>
+<body>
+    <h2>Ticket Eligibility</h2>
+    <label>Enter Age:</label>
+    <input type="number" id="ageInput" placeholder="Enter age">
+    <br><br>
+    <label>Has Permission?</label>
+    <select id="permissionInput">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+    <br><br>
+    <button onclick="handleCheck()">Check Ticket</button>
+    <h3 id="result"></h3>
+    <script>
+        function checkTicket(age, hasPermission){
+            if(age>=13 && age<=17){
+                return hasPermission===true ? "Allowed":"Not Allowed";
+            }else{
+                return "Allowed";
+            }
+        }
+        function handleCheck(){
+            const age=parseInt(document.getElementById("ageInput").value);
+            const hasPermission=document.getElementById("permissionInput").value==="true";
+
+            const result=checkTicket(age, hasPermission);
+
+            document.getElementById("result").innerText=result;
+        }
+    </script>
+</body>
+</html>

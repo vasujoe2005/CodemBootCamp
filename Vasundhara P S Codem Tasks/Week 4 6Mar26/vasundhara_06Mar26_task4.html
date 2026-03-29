@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Duplicate Highlighter</title>
+        <style>
+            .duplicate
+            {
+                background-color: yellow;
+                color: red;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Items List</h2>
+        <ul id="itemList"></ul>
+        <script>
+        let items = ["apple", "banana", "orange", "apple", "grape", "banana"];
+        function displayItems()
+        {
+            let list = document.getElementById("itemList");
+            list.innerHTML = "";
+            for (let i = 0; i < items.length; i++)
+            {
+                let count = 0;
+                for (let j = 0; j < items.length; j++)
+                {
+                    if (items[i] === items[j])
+                    {
+                        count++;
+                    }
+                }
+                let li = document.createElement("li");
+                li.innerText = items[i];
+                if (count > 1)
+                {
+                    li.classList.add("duplicate");
+                }
+                list.appendChild(li);
+            }
+        }
+        displayItems();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Callback Function Implementation</title>
+  </head>
+  <body>
+    <h2>Callback Function Implementation</h2>
+    <script>
+        function processNumber(num, callback) {
+          return callback(num);
+        }
+        function doubleNumber(n) {
+          return n * 2;
+        }
+        function halfNumber(n) {
+          return n / 2;
+        }
+        let doubleResult = processNumber(10, doubleNumber);
+        let halfResult = processNumber(10, halfNumber);
+        console.log("Double Result:", doubleResult);
+        console.log("Half Result:", halfResult);
+    </script>
+  </body>
+</html>

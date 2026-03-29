@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Object with Multiple Buttons</title>
+</head>
+<body>
+
+    <h2>Click Any Button</h2>
+    <button class="actionBtn">Save</button>
+    <button class="actionBtn">Edit</button>
+    <button class="actionBtn">Delete</button>
+    <br><br>
+    <div id="output"></div>
+    <script>
+        const buttons = document.querySelectorAll(".actionBtn");
+        const output = document.getElementById("output");
+        buttons.forEach(function (button) {
+            button.addEventListener("click", handleClick);
+        });
+        function handleClick(event) {
+            const buttonText = event.target.textContent;
+            const eventType = event.type;   
+            output.textContent = "You clicked: " + buttonText +" and Event Type: " + eventType;
+        }
+    </script>
+</body>
+</html>

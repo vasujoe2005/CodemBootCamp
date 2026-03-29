@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Drag Order Simulator</title>
+    </head>
+    <body>
+        <h3>Drag Order Simulator</h3>
+        <div id="list"></div>
+        <script>
+        let items = ["Item A", "Item B", "Item C", "Item D"];
+        let list = document.getElementById("list");
+        function showItems() {
+            list.innerHTML = "";
+            for(let i = 0; i < items.length; i++) {
+                let div = document.createElement("div");
+                div.textContent = items[i] + " ";
+                let upBtn = document.createElement("button");
+                upBtn.textContent = "Move Up";
+                upBtn.onclick = function() {
+                    moveUp(i);
+                };
+                let downBtn = document.createElement("button");
+                downBtn.textContent = "Move Down";
+                downBtn.onclick = function() {
+                    moveDown(i);
+                };
+                div.appendChild(upBtn);
+                div.appendChild(downBtn);
+                list.appendChild(div);
+            }
+        }
+        function moveUp(index) {
+            if(index === 0) {
+                return;
+            }
+            let temp = items[index];
+            items[index] = items[index - 1];
+            items[index - 1] = temp;
+            showItems();
+        }
+        function moveDown(index) {
+            if(index === items.length - 1) {
+                return;
+            }
+            let temp = items[index];
+            items[index] = items[index + 1];
+            items[index + 1] = temp;
+            showItems();
+        }
+        showItems();
+        </script>
+    </body>
+</html>

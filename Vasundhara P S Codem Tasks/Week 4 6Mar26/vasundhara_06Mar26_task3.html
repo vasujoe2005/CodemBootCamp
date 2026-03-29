@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Editable User Table</title>
+    </head>
+    <body>
+        <h2>User Table</h2>
+        <table border="1" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="userTable">
+            </tbody>
+        </table>
+        <script>
+        let users = [
+            { name: "Ali", age: 22, email: "ali@mail.com" },
+            { name: "Sara", age: 25, email: "sara@mail.com" }
+        ];
+        function renderTable()
+        {
+            let table = document.getElementById("userTable");
+            table.innerHTML = "";
+            for (let i = 0; i < users.length; i++)
+            {
+                let row = document.createElement("tr");
+                row.innerHTML = "<td>" + users[i].name + "</td>" + "<td>" + users[i].age + "</td>" + "<td>" + users[i].email + "</td>" + "<td><button onclick='editUser(" + i + ")'>Edit</button></td>";
+                table.appendChild(row);
+            }
+        }
+        function editUser(index)
+        {
+            let table = document.getElementById("userTable");
+            let row = table.children[index];
+            row.innerHTML = "<td><input id='name" + index + "' value='" + users[index].name + "'></td>" + "<td><input id='age" + index + "' value='" + users[index].age + "'></td>" + "<td>" + users[index].email + "</td>" + "<td><button onclick='saveUser(" + index + ")'>Save</button></td>";
+        }
+        function saveUser(index)
+        {
+            let newName = document.getElementById("name" + index).value;
+            let newAge = document.getElementById("age" + index).value;
+            users[index].name = newName;
+            users[index].age = newAge;
+            renderTable();
+        }
+        renderTable();
+        </script>
+    </body>
+</html>

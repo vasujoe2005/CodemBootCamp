@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form Validation</title>
+    </head>
+    <body>
+        <h2>Form Validation Input Presence Check</h2>
+        <form onsubmit="validateForm(event)">
+            <label>Name:</label><br>
+            <input type="text" id="name"><br><br>
+            <label>Email:</label><br>
+            <input type="email" id="email"><br><br>
+            <button type="submit">Submit</button>
+        </form>
+        <script>
+            function validateForm(event) {
+                let name = document.getElementById("name").value.trim();
+                let email = document.getElementById("email").value.trim();
+                if (name === "" || email === "") {
+                    console.log("Error: Name or Email cannot be empty");
+                    event.preventDefault();
+                } else {
+                    console.log("Form submitted successfully");
+                }
+            }
+        </script>
+    </body>
+</html>

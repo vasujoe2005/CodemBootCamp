@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Password Rule Checker</title>
+    </head>
+    <body>
+        <h3>Password Rule Checker</h3>
+        <input type="password" id="passwordInput" placeholder="Enter password">
+        <h4>Password Rules</h4>
+        <div id="rulesList"></div>
+        <script>
+        let rules = [
+            { rule: "Minimum 8 characters", isPassed: false },
+            { rule: "At least one uppercase letter", isPassed: false },
+            { rule: "At least one number", isPassed: false },
+            { rule: "At least one special character", isPassed: false }
+        ];
+        let rulesList = document.getElementById("rulesList");
+        let input = document.getElementById("passwordInput");
+        function checkPassword() {
+            let password = input.value;
+            rules[0].isPassed = password.length >= 8;
+            rules[1].isPassed = /[A-Z]/.test(password);
+            rules[2].isPassed = /[0-9]/.test(password);
+            rules[3].isPassed = /[!@#$%^&*]/.test(password);
+            let failedRules = [];
+            rulesList.innerHTML = "";
+            for(let i = 0; i < rules.length; i++)
+            {
+                let div = document.createElement("div");
+                if(rules[i].isPassed)
+                {
+                    div.textContent = "Accepted - " + rules[i].rule;
+                }
+                else
+                {
+                    div.textContent = "Failed - " + rules[i].rule;
+                    failedRules.push(rules[i].rule);
+                }
+                rulesList.appendChild(div);
+            }
+        }
+        input.addEventListener("input", checkPassword);
+        </script>
+    </body>
+</html>

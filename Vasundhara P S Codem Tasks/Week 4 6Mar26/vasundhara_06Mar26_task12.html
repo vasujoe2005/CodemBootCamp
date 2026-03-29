@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quiz Engine</title>
+    </head>
+    <body>
+        <h3>Simple Quiz</h3>
+        <div id="quizBox"></div>
+        <p id="score"></p>
+        <script>
+        let quiz = [
+        {
+            question: "What is JavaScript?",
+            options: ["Language", "Framework", "Database"],
+            answer: "Language"
+        },
+        {
+            question: "Which keyword declares a variable?",
+            options: ["var", "loop", "print"],
+            answer: "var"
+        }
+        ];
+        let currentQuestion = 0;
+        let score = 0;
+        let quizBox = document.getElementById("quizBox");
+        function showQuestion(){
+            if(currentQuestion >= quiz.length)
+            {
+                quizBox.innerHTML = "<h4>Quiz Finished</h4>";
+                document.getElementById("score").textContent =
+                "Final Score: " + score + " / " + quiz.length;
+                return;
+            }
+            let q = quiz[currentQuestion];
+            quizBox.innerHTML = "<h4>" + q.question + "</h4>";
+            for(let i = 0; i < q.options.length; i++){
+                let btn = document.createElement("button");
+                btn.textContent = q.options[i];
+                btn.style.margin = "8px";
+                btn.style.padding = "6px 12px";
+                btn.onclick = function() {
+                    checkAnswer(q.options[i]);
+                };
+                quizBox.appendChild(btn);
+            }
+        }
+        function checkAnswer(selected) {
+            let correct = quiz[currentQuestion].answer;
+            if(selected === correct) {
+                score++;
+            }
+            currentQuestion++;
+            showQuestion();
+        }
+        showQuestion();
+        </script>
+    </body>
+</html>

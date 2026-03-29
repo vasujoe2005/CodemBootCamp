@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Attendance Tracker</title>
+    </head>
+    <body>
+        <h2>Student Attendance</h2>
+        <ul id="studentList"></ul>
+        <h3 id="summary"></h3>
+        <script>
+        let students = [
+            { name: "Ali", present: true },
+            { name: "Sara", present: false }
+        ];
+        function renderStudents()
+        {
+            let list = document.getElementById("studentList");
+            list.innerHTML = "";
+            let presentCount = 0;
+            let absentCount = 0;
+            for (let i = 0; i < students.length; i++)
+            {
+                let li = document.createElement("li");
+                let status = students[i].present ? "Present" : "Absent";
+                if (students[i].present)
+                {
+                    presentCount++;
+                }
+                else
+                {
+                    absentCount++;
+                }
+                li.innerHTML =
+                    students[i].name + " - " + status + " <button onclick='toggleAttendance(" + i + ")'>Toggle</button>";
+                list.appendChild(li);
+            }
+            document.getElementById("summary").innerText =
+                "Present: " + presentCount + "     Absent: " + absentCount;
+        }
+        function toggleAttendance(index)
+        {
+            students[index].present = !students[index].present;
+
+            renderStudents();
+        }
+        renderStudents();
+        </script>
+    </body>
+</html>

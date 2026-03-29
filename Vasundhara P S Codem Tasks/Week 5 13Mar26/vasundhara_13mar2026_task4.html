@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Function with Default Parameters</title>
+    </head>
+    <body>
+        <h2>Function with Default Parameters</h2>
+        <script>
+            function calculateDiscount(price, discount = 10) {
+              let finalPrice = price - (price * discount) / 100;
+              return finalPrice;
+            }
+            let result1 = calculateDiscount(1000, 20);
+            let result2 = calculateDiscount(1000);
+            console.log("Price with 20% discount:", result1);
+            console.log("Price with default discount:", result2);
+        </script>
+    </body>
+</html>

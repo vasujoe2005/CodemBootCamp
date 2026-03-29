@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account Security Check</title>
+    <script>
+        function checkAccountSecurity(){
+            var passwordStatus=document.getElementById("passwordStatus").value;
+            var otpStatus=document.getElementById("otpStatus").value;
+            var accountStatus=document.getElementById("accountStatus").value;
+            var result=document.getElementById("result");
+            if(passwordStatus==="correct" && otpStatus==="verified" && accountStatus==="active"){
+                result.innerHTML="Login Successful";
+            }
+            else{
+                result.innerHTML="Login Failed";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Account Security Check</h2>
+    Password Status:
+    <select id="passwordStatus">
+        <option value="correct">Correct</option>
+        <option value="wrong">Wrong</option>
+    </select>
+    <br><br>
+    OTP Verification:
+    <select id="otpStatus">
+        <option value="verified">Verified</option>
+        <option value="notVerified">Not Verified</option>
+    </select>
+    <br><br>
+    Account Status:
+    <select id="accountStatus">
+        <option value="active">Active</option>
+        <option value="blocked">Blocked</option>
+    </select>
+    <br><br>
+    <button onclick="checkAccountSecurity()">Login</button>
+    <h3 id="result"></h3>
+</body>
+</html>

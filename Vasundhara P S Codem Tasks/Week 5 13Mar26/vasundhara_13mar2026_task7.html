@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Email Format Validation</title>
+    </head>
+    <body>
+        <h2>Form Validation - Email Format Check</h2>
+        <form onsubmit="validateEmail(event)">
+            <label>Email:</label><br>
+            <input type="email" id="email"><br><br>
+            <button type="submit">Submit</button>
+        </form>
+        <script>
+            function validateEmail(event) {
+                let email = document.getElementById("email").value.trim();
+                if (email.includes("@") && email.includes(".")) {
+                    console.log("Valid Email Format");
+                } else {
+                    console.log("Invalid Email Format");
+                    event.preventDefault();
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dynamic Form Builder</title>
+    </head>
+    <body>
+        <h2>Dynamic Form</h2>
+        <form id="dynamicForm"></form>
+        <br>
+        <button onclick="submitForm()">Submit</button>
+        <h3>Submitted Data:</h3>
+        <ul id="output"></ul>
+        <script>
+        let fields = [
+            { type: "text", label: "Name" },
+            { type: "email", label: "Email" },
+            { type: "number", label: "Age" }
+        ];
+        function createForm()
+        {
+            let form = document.getElementById("dynamicForm");
+            for (let i = 0; i < fields.length; i++)
+            {
+                let label = document.createElement("label");
+                label.innerText = fields[i].label;
+                let input = document.createElement("input");
+                input.type = fields[i].type;
+                input.id = "field" + i;
+                form.appendChild(label);
+                form.appendChild(document.createElement("br"));
+                form.appendChild(input);
+                form.appendChild(document.createElement("br"));
+                form.appendChild(document.createElement("br"));
+            }
+        }
+        function submitForm()
+        {
+            let formData = [];
+            for (let i = 0; i < fields.length; i++)
+            {
+                let value = document.getElementById("field" + i).value;
+
+                formData.push({
+                    label: fields[i].label,
+                    value: value
+                });
+            }
+            console.log(formData);
+            displayData(formData);
+        }
+        function displayData(data)
+        {
+            let list = document.getElementById("output");
+            list.innerHTML = "";
+
+            for (let i = 0; i < data.length; i++)
+            {
+                let li = document.createElement("li");
+                li.innerText = data[i].label + ": " + data[i].value;
+
+                list.appendChild(li);
+            }
+        }
+        createForm();
+        </script>
+    </body>
+</html>
